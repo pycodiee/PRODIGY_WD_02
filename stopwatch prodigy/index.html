@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Stop watch</title>
+    <div class="watch">
+        <div class="nav">
+            <h1>CLOCKVERSE.COM</h1>
+            <p class="home">HOME</p>
+            <p class="home">ABOUT</p>
+            <p class="home">SERVICES</p>
+            <p class="home">FAQs</p>
+        </div>
+<body>
+        <div class="container">
+            <p>STOPWATCH</p>
+            <p class="time">
+                <span id="minutes">00</span>:<span id="seconds">00</span>:<span id="tens">00</span>
+            </p>
+            <button id="start">Start</button>
+            <button id="stop">Stop</button>
+            <!-- <button id="lap">Lap</button> -->
+            <button id="reset">Reset</button>
+        </div>
+    </div>
+    </head>
+    
+</body>
+ <script>
+    // <!-- jscode
+        window.onload = function () {
+
+            let minutes = 0;
+            let seconds = 0;
+             let tens = '00';
+
+            let appendminutes = document.querySelector('#minutes')
+             let appendtens = document.querySelector('#tens')
+            let appendseconds = document.querySelector('#seconds')
+           
+
+            let Startbtn = document.querySelector('#start')
+            let resetbtn = document.querySelector('#reset')
+            let stopbtn = document.querySelector('#stop')
+            // let lapbtn = document.querySelector('#lap')
+            let Interval;
+
+            const StartTimer = () => {
+                tens++;
+                if (tens <= 9) {
+                    appendtens.innerHTML = '0' + tens;
+                }
+                if (tens > 9) {
+                    appendtens.innerHTML = tens;
+                }
+                if (tens > 99) {
+                    seconds++;
+                    appendseconds.innerHTML = '0' + seconds;
+                    tens = 0;
+                    appendtens.innerHTML = "0" + 0;
+                }
+                if (seconds > 9) {
+                    appendseconds.innerHTML = seconds;
+                }
+                if (seconds > 59) {
+                    minutes++;
+                    appendminutes.innerHTML = '0' + minutes;
+                    seconds = 0;
+                    appendseconds.innerHTML = '0' + 0;
+
+                }
+            };
+                 Startbtn.onclick = () => {
+                 clearInterval(Interval);
+                 Interval = setInterval(StartTimer, 10);
+                 };
+
+
+                 stopbtn.onclick = () => {
+                 clearInterval(Interval);
+                 };
+
+                resetbtn.onclick = () => {
+                clearInterval(Interval);
+                tens='00'
+                seconds = '00'
+                minutes = '00'
+                appendtens.innerHTML=tens;
+                appendseconds.innerHTML=seconds;
+                appendminutes.innerHTML=minutes;
+
+            };
+                
+        };
+
+ </script>
+    
+</html>
